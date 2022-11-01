@@ -126,6 +126,7 @@ public class AppConfig implements WebMvcConfigurer, ApplicationContextAware {
         registry.addFormatter(new ProvinceFormatter(appContext.getBean(ProvinceService.class)));
     }
 
+    //
     @Bean
     public MessageSource messageSource() {
         ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
