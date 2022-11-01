@@ -2,38 +2,39 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
-  <title>Customer Information</title>
+  <title th:text="#{info_customer.title}"></title>
 </head>
 <body>
+Language: <a href="?lang=en">English</a> | <a href="?lang=vn">Vietnamese</a>
 <form action="/customers" method="post">
   <fieldset>
-    <legend>Customer Information</legend>
+    <legend th:text="#{info_customer.table}"></legend>
     <input type="hidden" name="id" th:value="${customer.id}">
     <table>
       <tr>
-        <td>Id</td>
+        <td th:text="#{customer.id}">Id</td>
         <td th:text="${customer.id}"></td>
       </tr>
       <tr>
-        <td>Name</td>
+        <td th:text="#{customer.name}">Name</td>
         <td>
           <input type="text" name="name" th:value="${customer.name}">
         </td>
       </tr>
       <tr>
-        <td>Email</td>
+        <td th:text="#{customer.email}"></td>
         <td>
           <input type="text" name="email" th:value="${customer.email}">
         </td>
       </tr>
       <tr>
-        <td>Address</td>
+        <td th:text="#{customer.address}"></td>
         <td>
           <input type="text" name="address" th:value="${customer.address}">
         </td>
       </tr>
       <tr>
-        <td>Province</td>
+        <td th:text="#{customer.province}"></td>
         <td>
           <select name="province">
             <option th:each="p : ${provinces}" th:value="${p.id}" th:text="${p.name}"></option>
@@ -42,12 +43,12 @@
       </tr>
       <tr>
         <td colspan="2">
-          <input type="submit" value="Update">
+          <input type="submit" th:value="#{info_customer.update}">
         </td>
       </tr>
     </table>
   </fieldset>
 </form>
-<a href="/customers">Back to list</a>.
+<a href="/customers" th:text="#{info_customer.back}"></a>
 </body>
 </html>

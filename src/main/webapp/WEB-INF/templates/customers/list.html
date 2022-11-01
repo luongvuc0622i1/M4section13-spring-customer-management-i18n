@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
-  <title>Customer List</title>
+  <title th:text="#{customer.title}"></title>
   <style>
     table {
       border: 1px solid #000;
@@ -14,26 +14,22 @@
   </style>
 </head>
 <body>
-<span th:if="${keyword}">
-  Search result for <code>"[[${keyword}]]"</code>, <a th:href="@{/customers}">click here to clear</a>.<br>
-</span>
-There are [[${customers.totalElements}]] customer(s).
+Language: <a href="?lang=en">English</a> | <a href="?lang=vn">Vietnamese</a><br>
+<span th:text="#{customer.amount1}"></span>[[${customers.totalElements}]]<span th:text="#{customer.amount2}"></span>
 <form>
-  <label>
-    Search by name or email:
-    <input type="text" name="s">
-  </label>
-  <input type="submit" value="Search">
-</form>
+  <a th:text="#{customer.search}"></a>
+  <input name="s" type="text"/>
+  <input type="submit" th:value="#{customer.submit}"/>
+</form><br/>
 <table>
-  <caption>Customers List</caption>
+  <caption th:text="#{customer.table}"></caption>
   <thead>
   <tr>
-    <th>Id</th>
-    <th>Name</th>
-    <th>Email</th>
-    <th>Address</th>
-    <th>Province</th>
+    <th th:text="#{customer.id}"></th>
+    <th th:text="#{customer.name}"></th>
+    <th th:text="#{customer.email}"></th>
+    <th th:text="#{customer.address}"></th>
+    <th th:text="#{customer.province}"></th>
   </tr>
   </thead>
   <tbody>
@@ -49,12 +45,12 @@ There are [[${customers.totalElements}]] customer(s).
   </tbody>
 </table>
 <div>
-  <a th:if="${customers.hasPrevious()}"
+  <a th:if="${customers.hasPrevious()}" th:text="#{customer.previous}"
      th:href="@{'/customers'(page=${customers.number - 1}, size=${customers.size}, s=${keyword})}">
     Previous
   </a>
-  [[${customers.number + 1}]]/[[${customers.totalPages}]]
-  <a th:if="${customers.hasNext()}"
+  <span th:text="${customers.number + 1}"></span>/<span th:text="${customers.totalPages}"></span>
+  <a th:if="${customers.hasNext()}" th:text="#{customer.next}"
      th:href="@{'/customers'(page=${customers.number + 1}, size=${customers.size}, s=${keyword})}">
     Next
   </a>
